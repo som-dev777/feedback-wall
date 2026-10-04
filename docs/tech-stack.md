@@ -11,7 +11,7 @@
 | Live updates | Server-Sent Events (SSE) | One-way server → browser push, built into browsers, no extra library |
 
 ## Runtime
-- Node.js 20 or newer (built and tested on Node 24). `better-sqlite3` is a native module; current Node versions get prebuilt binaries.
+- Node.js 22 or newer (`better-sqlite3` 13 requires it; developed on Node 24). Production is pinned to Node 22 LTS via `engines` in the root `package.json`. `better-sqlite3` is a native module; on Node 20 it crashes at startup.
 - Backend uses ES modules (`"type": "module"`).
 
 ## Dependencies

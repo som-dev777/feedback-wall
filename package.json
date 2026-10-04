@@ -3,7 +3,7 @@
   "private": true,
   "description": "A live digital sticky-note board",
   "engines": {
-    "node": ">=20"
+    "node": "22.x"
   },
   "scripts": {
     "build": "npm ci --prefix server && npm ci --include=dev --prefix client && npm run build --prefix client",
