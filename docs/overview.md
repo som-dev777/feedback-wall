@@ -22,7 +22,7 @@ Code on GitHub (public repo), hosted on Railway as a single Node service with a 
 
 - Live app: https://feedback-wall-production.up.railway.app
 - Repo: https://github.com/som-dev777/feedback-wall
-- Pushing to `main` redeploys automatically.
+- Pushing to `main` redeploys automatically **once the Railway GitHub App is installed** for this repo. Without it, deploy the latest commit with `railway service source connect --repo som-dev777/feedback-wall --branch main --service feedback-wall`.
 
 ## Status
 v1 built. All features above are implemented.

@@ -53,4 +53,4 @@ Update the docs **only when a change is significant**, i.e. when it would mislea
 - Server: `cd server && npm run dev` (port 3000)
 - Client: `cd client && npm run dev` (Vite, proxies `/api` → 3000)
 - Production build/run (what Railway does): `npm run build && npm start` from the project root
-- Deploy: `git push` to `main` (Railway auto-deploys). Logs: `railway logs`
+- Deploy: `git push` to `main` (auto-deploys if the Railway GitHub App is installed; otherwise see `docs/overview.md` → Deployment). Logs: `railway logs`
