@@ -20,5 +20,9 @@ Authentication, editing or deleting notes, likes/reactions, moderation, paginati
 ## Deployment
 Code on GitHub (public repo), hosted on Railway as a single Node service with a persistent volume for the SQLite file. See `tech-stack.md` → Production.
 
+- Live app: https://feedback-wall-production.up.railway.app
+- Repo: https://github.com/som-dev777/feedback-wall
+- Pushing to `main` redeploys automatically.
+
 ## Status
 v1 built. All features above are implemented.
