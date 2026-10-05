@@ -13,6 +13,7 @@ Anyone with the link. There are no accounts, no login and no moderation (yet).
 | 2 | View the wall | All feedback shown as sticky notes, newest first |
 | 3 | Live updates | New notes appear instantly for every open browser (Server-Sent Events) |
 | 4 | Dark terminal look | Dark panelled layout, monospace and pixel fonts, lime accent; each note is a tile with a coloured name chip + relative time (see `look-and-feel.md`) |
+| 5 | AI summary | A **Summarize** button sends the 10 most recent notes to OpenAI and shows a short summary, a sentiment bar (positive / neutral / negative) and the top themes as bars. Only the person who clicks sees it. |
 
 ## Out of scope (for now)
 Authentication, editing or deleting notes, likes/reactions, moderation, pagination.

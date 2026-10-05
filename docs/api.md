@@ -32,6 +32,7 @@ Create a new feedback note.
 **Responses**
 - `201 Created`: the created note object
 - `400 Bad Request`: `{ "error": "<reason>" }`
+- `413 Payload Too Large`: `{ "error": "Request body is too large" }` (body over Express's 100 KB limit)
 - `500 Internal Server Error`: `{ "error": "Something went wrong" }`
 
 **Side effect:** the created note is broadcast to all connected `/api/feedbacks/stream` clients.
@@ -44,6 +45,29 @@ Return all notes, newest first (`ORDER BY created_at DESC, id DESC`).
 **Responses**
 - `200 OK`: array of note objects
 - `500`: `{ "error": "Something went wrong" }`
+
+---
+
+## POST /api/summary
+Summarize the 10 most recent notes with OpenAI. No request body.
+
+**Responses**
+- `200 OK`:
+  ```json
+  {
+    "summary": "Most people like the live updates; a few find the text hard to read.",
+    "sentiment": { "positive": 6, "neutral": 3, "negative": 1 },
+    "themes": [{ "label": "Live updates", "count": 4 }, { "label": "Readability", "count": 2 }],
+    "noteCount": 10,
+    "generatedAt": "2026-10-05T08:10:00.000Z"
+  }
+  ```
+  `themes` has at most 4 items, most common first. Counts are whole numbers between 0 and `noteCount` (themes: at least 1). The model's sentiment counts may not add up exactly to `noteCount`.
+- `400 Bad Request`: `{ "error": "There is no feedback to summarize yet" }`
+- `502 Bad Gateway`: `{ "error": "Could not get a summary right now. Please try again." }` (OpenAI failed, timed out after 20 s, or returned something unreadable)
+- `503 Service Unavailable`: `{ "error": "Summaries are not set up on this server" }` (no `OPENAI_API_KEY`)
+
+**Cost control:** the last summary is reused while no new note has arrived, and simultaneous requests share one OpenAI call.
 
 ---
 

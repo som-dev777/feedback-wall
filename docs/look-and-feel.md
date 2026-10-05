@@ -20,7 +20,7 @@ All styles live in `client/src/index.css`. Colours, fonts and spacing are CSS va
 | `--border-strong` | `#2C2C2C` | Input and chip borders |
 | `--text` | `#E8E8E8` | Main text (note messages, input text) |
 | `--muted` | `#9A9A9A` | Labels, status text, chip text |
-| `--dim` | `#5C5C5C` | Tagline, timestamps, counter, placeholders |
+| `--dim` | `#808080` | Tagline, timestamps, counter, placeholders (≈5:1 on panels, meets WCAG AA) |
 | `--accent` | `#D4FF3A` | Lime: headline, Post button, focus ring, selection |
 | `--yellow` | `#FFE14D` | Top-bar status dot |
 | `--green` | `#5CFF8A` | Top-bar status dot |
@@ -63,6 +63,7 @@ Label style (status items, chips, section label, timestamps, button): uppercase,
 - **Sidebar** (sticky, full height): logo, tagline, "Post a note" label, then the form.
 - **Top bar**: two status items with coloured dots: "Real-time wall" (yellow) and the live note count (green).
 - **Hero**: the lime pixel-font headline.
+- **AI summary panel**: between the hero and the wall. Title with a lime dot, hint line, lime Summarize button on the right.
 - **Wall**: a grid of tiles, `repeat(auto-fill, minmax(260px, 1fr))`, min height 220px.
 - **Below 800px wide**: the sidebar stacks above the main column and stops being sticky.
 
@@ -71,3 +72,4 @@ Label style (status items, chips, section label, timestamps, button): uppercase,
 - **Inputs**: raised dark background, strong border, lime border on focus, dim placeholder.
 - **Post button**: lime background, black uppercase text. When disabled, a raised grey background with dim text.
 - **Empty and error states**: a single centred panel with muted text.
+- **AI summary visuals**: summary text in body size (max 75 characters wide). Sentiment is one 14px bar split into rounded segments: positive `--green`, neutral `--dim`, negative `--danger`, with a legend of dots and counts. Themes are rows of label, a 10px lime (`--accent`) bar scaled to the most common theme, and the count.

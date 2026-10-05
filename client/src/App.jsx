@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import FeedbackForm from './components/FeedbackForm.jsx'
 import FeedbackWall from './components/FeedbackWall.jsx'
+import FeedbackSummary from './components/FeedbackSummary.jsx'
 
 function App() {
   // Shared notes list; FeedbackWall fills it from the API and the live stream
@@ -34,6 +35,8 @@ function App() {
             Everyone sees it instantly.
           </p>
         </section>
+
+        <FeedbackSummary noteCount={notes.length} />
 
         <FeedbackWall notes={notes} setNotes={setNotes} />
       </main>

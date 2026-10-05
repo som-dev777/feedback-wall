@@ -2,3 +2,18 @@ node_modules/
 server/data/*.db
 client/dist/
 .DS_Store
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+/.test-data/
+/.test-data-nft/
+/nft-results/
+
+# Secrets (API keys) never go to Git
+.env
+.env.*
+!.env.example

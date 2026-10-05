@@ -23,7 +23,10 @@ The docs are the source of truth. If code and docs disagree, point it out and as
 - Always use prepared statements (`?` placeholders) for SQL. Never use string concatenation.
 - Validate input on the server, not only in the UI.
 - Render user text as plain text. Never use `dangerouslySetInnerHTML`.
+- Never put API keys or other secrets in code, docs or commits. They go in `server/.env` (gitignored) locally and in Railway variables in production.
+- Tests must never call the real OpenAI API; use the fake server in `tests/mock-openai.js`.
 - Work in small steps; after each step, tell me exactly how to test it.
+- When adding or changing a feature, add or update the Playwright test for it in `tests/` and make sure `npm run test:e2e` passes.
 - Keep code simple and readable (student project). Add brief comments only where logic isn't obvious.
 - Don't add features I haven't asked for.
 - Follow `docs/look-and-feel.md` for all styling: use the CSS variables in `client/src/index.css`, don't hard-code new colours or fonts.
@@ -52,5 +55,7 @@ Update the docs **only when a change is significant**, i.e. when it would mislea
 ## Quick commands
 - Server: `cd server && npm run dev` (port 3000)
 - Client: `cd client && npm run dev` (Vite, proxies `/api` → 3000)
+- E2E tests (Playwright, local only, uses its own server on 3100 + throwaway DB): `npm run test:e2e`
+- Non-functional tests (speed, load, network, responsive, accessibility; own server on 3200): `npm run test:nft`
 - Production build/run (what Railway does): `npm run build && npm start` from the project root
 - Deploy: `git push` to `main` (auto-deploys if the Railway GitHub App is installed; otherwise see `docs/overview.md` → Deployment). Logs: `railway logs`

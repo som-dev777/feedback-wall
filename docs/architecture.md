@@ -31,6 +31,16 @@ FeedbackWall ──GET /api/feedbacks/stream (EventSource, stays open)──▶ 
 ```
 The poster's own note also arrives through the stream, so the wall skips notes whose `id` is already shown.
 
+### 4. AI summary
+```
+FeedbackSummary ──POST /api/summary──▶ Express: SELECT 10 newest ──▶ SQLite
+                                          │
+                                          ├─▶ same newest note as last time? return the saved summary
+                                          └─▶ otherwise fetch() OpenAI chat completions (structured JSON) ──▶ OpenAI
+                ◀──── { summary, sentiment, themes } ────
+```
+The API key lives only on the server (`server/.env` locally, a Railway variable in production). The browser never sees it.
+
 ## Project structure
 ```
 feedback-wall/
@@ -39,7 +49,10 @@ feedback-wall/
 ├── docs/
 ├── server/
 │   ├── index.js      # Express app, routes, SSE client list + broadcast; serves client/dist in production
+│   ├── env.js        # loads server/.env (OPENAI_API_KEY); imported first
 │   ├── db.js         # better-sqlite3 connection + table creation
+│   ├── summary.js    # OpenAI call (built-in fetch) + checks on the model's answer
+│   ├── .env          # OPENAI_API_KEY (gitignored, never committed)
 │   ├── data/         # feedback.db (gitignored, created on startup)
 │   └── package.json
 └── client/
@@ -47,6 +60,7 @@ feedback-wall/
     │   ├── App.jsx
     │   ├── components/
     │   │   ├── FeedbackForm.jsx
+    │   │   ├── FeedbackSummary.jsx
     │   │   ├── FeedbackWall.jsx
     │   │   └── StickyNote.jsx
     │   └── index.css

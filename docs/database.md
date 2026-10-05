@@ -29,6 +29,9 @@ SELECT * FROM feedbacks WHERE id = ?;
 
 -- list
 SELECT * FROM feedbacks ORDER BY created_at DESC, id DESC;
+
+-- newest notes for the AI summary (limit = 10)
+SELECT * FROM feedbacks ORDER BY created_at DESC, id DESC LIMIT ?;
 ```
 
 ## Rules

@@ -24,6 +24,7 @@ db.exec(`
 const insertStmt = db.prepare('INSERT INTO feedbacks (name, message) VALUES (?, ?)');
 const getByIdStmt = db.prepare('SELECT * FROM feedbacks WHERE id = ?');
 const listStmt = db.prepare('SELECT * FROM feedbacks ORDER BY created_at DESC, id DESC');
+const latestStmt = db.prepare('SELECT * FROM feedbacks ORDER BY created_at DESC, id DESC LIMIT ?');
 
 export function createFeedback(name, message) {
   const result = insertStmt.run(name, message);
@@ -32,4 +33,8 @@ export function createFeedback(name, message) {
 
 export function listFeedbacks() {
   return listStmt.all();
+}
+
+export function latestFeedbacks(limit) {
+  return latestStmt.all(limit);
 }

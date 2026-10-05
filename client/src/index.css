@@ -7,7 +7,7 @@
   --border-strong: #2c2c2c;
   --text: #e8e8e8;
   --muted: #9a9a9a;
-  --dim: #5c5c5c;
+  --dim: #808080;
   --accent: #d4ff3a;
   --yellow: #ffe14d;
   --green: #5cff8a;
@@ -227,6 +227,190 @@ body {
   line-height: 1.1;
   letter-spacing: 0.04em;
   color: var(--accent);
+}
+
+/* AI summary panel */
+.summary {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.summary-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+
+.summary-title {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dot-accent {
+  background: var(--accent);
+}
+
+.summary-hint {
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+  color: var(--dim);
+}
+
+.summary-header button {
+  padding: 8px 18px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #000;
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.summary-header button:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.summary-header button:disabled {
+  color: var(--dim);
+  background: var(--panel-raised);
+  cursor: not-allowed;
+}
+
+.summary-error {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--danger);
+}
+
+.summary-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.summary-text {
+  margin: 0;
+  max-width: 75ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.summary-visuals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px 32px;
+}
+
+.summary-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.summary-block .section-label {
+  margin: 0;
+}
+
+.sentiment-bar {
+  display: flex;
+  gap: 3px;
+  height: 14px;
+}
+
+.sentiment-bar span {
+  border-radius: 3px;
+}
+
+.sentiment-positive {
+  background: var(--green);
+}
+
+.sentiment-neutral {
+  background: var(--dim);
+}
+
+.sentiment-negative {
+  background: var(--danger);
+}
+
+.sentiment-legend {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.sentiment-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sentiment-legend strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.theme-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.theme-row {
+  display: grid;
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) 2rem;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8rem;
+}
+
+.theme-label {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.theme-track {
+  height: 10px;
+  background: var(--panel-raised);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.theme-fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+.theme-count {
+  text-align: right;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
 
 /* Wall of note tiles */

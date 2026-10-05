@@ -28,9 +28,10 @@ function FeedbackForm() {
         const data = await res.json().catch(() => ({}))
         throw new Error(data.error || 'Something went wrong')
       }
-      // The new note reaches the wall through the live stream
-      setName('')
-      setMessage('')
+      // The new note reaches the wall through the live stream.
+      // Clear only what was sent: the user may already be typing the next note.
+      setName((current) => (current === name ? '' : current))
+      setMessage((current) => (current === message ? '' : current))
     } catch (err) {
       setError(err.message === 'Failed to fetch' ? 'Could not reach the server' : err.message)
     } finally {
